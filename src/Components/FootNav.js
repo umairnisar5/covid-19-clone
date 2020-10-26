@@ -8,26 +8,27 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    position:'absolute',
+    bottom : 0,
+    right : 0,
+    left :0
   },
 });
 
-export default function SimpleBottomNavigation() {
+export default function FootNav(screenConfig) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
   return (
     <BottomNavigation
-      value={value}
+      value={screenConfig[0]}
       onChange={(event, newValue) => {
-        setValue(newValue);
+        screenConfig[1](newValue);
       }}
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label="Global Stats" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="Country Stats" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Graphs" icon={<LocationOnIcon />} />
     </BottomNavigation>
   );
 }

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function InfoPanel({currentScreen}) {
+export default function GlobalStats() {
   const [globalData, setGlobalData] = useState({});
 
   useEffect(() => {
