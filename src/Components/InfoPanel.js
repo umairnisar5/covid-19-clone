@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: '#3f51b5'
-    
   }
 }));
 
@@ -32,7 +31,7 @@ export default function InfoPanel() {
     }
     getData();
   }, [])
-
+  
   const classes = useStyles();
 
   return (
