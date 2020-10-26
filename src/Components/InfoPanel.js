@@ -14,17 +14,21 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  title: {
+    color: '#3f51b5'
+    
+  }
 }));
 
 export default function InfoPanel() {
-  const [globalDat, setGlobalData] = useState({});
+  const [globalData, setGlobalData] = useState({});
 
   useEffect(() => {
     async function getData() {
       const response = await fetch("https://api.thevirustracker.com/free-api?global=stats");
       let data = await response.json();
-      delete data.result[0].source;
-      setGlobalData(data.result[0])
+      delete data.results[0].source;
+      setGlobalData(data.results[0])
     }
     getData();
   }, [])
@@ -34,11 +38,15 @@ export default function InfoPanel() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {Object.keys(globalDat).map((val, ind) => {
+        {Object.keys(globalData).map((key, ind) => {
           return (<Grid item xs={12} sm={4} key={ind}>
             <Paper 
             className={classes.paper}>
-            {val}
+           <h3 className={classes.title}>
+           {key.replace(/ /g, ' ').toUpperCase()}
+           </h3>
+           <h3>{globalData[key]}</h3>
+            
             </Paper>
           </Grid>
           )
